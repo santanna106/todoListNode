@@ -88,7 +88,7 @@ app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
 
   const todos = user.todos.map(todo => {
     if(todo.id === id){
-      todo.deadline = deadline;
+      todo.deadline = new Date(deadline);
       todo.title = title
     }
 
@@ -145,8 +145,8 @@ app.delete('/todos/:id', checksExistsUserAccount, (request, response) => {
     
     
     user.todos = todos;
-    console.log('todos: ',todos);
-    response.status(204).json(todoFound);
+   
+    response.status(204).json();
 
   } else {
     response.status(404).json({error:"Todo not found"});
